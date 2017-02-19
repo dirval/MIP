@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/dirval/MIP#readme",
   "dependencies": {
+    "body-parser": "^1.16.1",
+    "cors": "^2.8.1",
     "express": "^4.14.0"
   }
 }
