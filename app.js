@@ -11,14 +11,16 @@ app.use(bodyParser.json());
 app.set('port', (process.env.PORT || 5000));
 
 var users = [{
-        id: "txgw35",
+        id: "0",
         username: "test",
-        password: "pwd"
+        password: "pwd",
+        email: "test@test.com"
     },
     {
-        id: "xvj2f2",
+        id: "1",
         username: "john",
-        password: "doe"
+        password: "doe",
+        email: "john@doe.com"
     }
     ];
 
@@ -42,6 +44,27 @@ app.post('/login', function(req, res){
         return res.sendStatus(401);
     }
 });
+
+app.post('/register', function(req, res){
+  console.log("register");
+  console.log(req.body);
+  var nb_users = users.length;
+  console.log(users);
+  console.log(nb_users);
+  users.push({
+    id: users.length,
+    username: req.body.username,
+    password: req.body.password,
+    email: req.body.email
+  });
+  console.log(users);
+
+  if (nb_users != users.length) {
+    return res.json(users);
+  }
+
+
+})
 
 app.listen(app.get('port'), function(){
   console.log("App running in a port: " + app.get('port'));
