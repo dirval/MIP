@@ -26,14 +26,14 @@ var users = [{
         username: "test",
         password: "pwd",
         email: "test@test.com",
-        imageProfile : 'http://res.cloudinary.com/hx1imsdve/image/upload/v1487848704/mqmojoluxj9simpeevd8.jpg'
+        imageProfile : 'http://res.cloudinary.com/hx1imsdve/image/upload/v1487857939/glwd9nx9rljwdiaf1vyd.png'
     },
     {
         id: "1",
         username: "john",
         password: "doe",
         email: "john@doe.com",
-        imageProfile : 'img/marty.jpeg'
+        imageProfile : 'http://res.cloudinary.com/hx1imsdve/image/upload/v1487857939/glwd9nx9rljwdiaf1vyd.png'
     },
     {
         id: "3",
@@ -147,6 +147,21 @@ app.get("/postUser/:id", function(req, res){
     {
         return res.sendStatus(401);
     }
+});
+
+app.get('/searchUser/:word', function(req, res){
+  console.log(req.params);
+  var upperCaseSearchWord = req.params.word.toUpperCase();
+  if(req.params.word.length > 0){
+    var matches = users.filter(function(u){
+      var testString = u.username.toUpperCase();
+      console.log(upperCaseSearchWord);
+      console.log(testString);
+      return testString.includes(upperCaseSearchWord);
+    });
+  }
+  console.log(matches);
+  res.json(matches);
 });
 
 app.listen(app.get('port'), function(){
