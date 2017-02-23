@@ -127,7 +127,7 @@ app.get('/posts', function(req, res){
 
 app.post('/upload', parser.single('image'), function (req, res) {
     console.log(req.file.url);
-    res.json(req.file);
+    res.json(req.file.url);
 });
 
 app.get("/postUser/:id", function(req, res){
