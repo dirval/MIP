@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var cors = require('cors');
 
+//https://res.cloudinary.com/hx1imsdve/image/upload/v1487858892/dee0khp0aqrpgmsh3nrn.jpg  ==> Rambo
+
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -24,7 +26,7 @@ var users = [{
         username: "test",
         password: "pwd",
         email: "test@test.com",
-        imageProfile : 'img/rambo.jpeg'
+        imageProfile : 'http://res.cloudinary.com/hx1imsdve/image/upload/v1487848704/mqmojoluxj9simpeevd8.jpg'
     },
     {
         id: "1",
@@ -32,8 +34,35 @@ var users = [{
         password: "doe",
         email: "john@doe.com",
         imageProfile : 'img/marty.jpeg'
+    },
+    {
+        id: "3",
+        username: "Marty Mc Fly",
+        password: "password",
+        email: "marty@future.com",
+        imageProfile : 'http://res.cloudinary.com/hx1imsdve/image/upload/v1487850019/ojvegsie0uwcdrzikbni.jpg'
+    },
+    {
+        id: "4",
+        username: "Batman",
+        password: "batpass",
+        email: "man@bat.com",
+        imageProfile : 'http://res.cloudinary.com/hx1imsdve/image/upload/v1487850235/inosp0i8lexpke2jmczk.jpg'
     }
     ];
+
+var posts = [{
+      id: "0",
+      picture: "http://res.cloudinary.com/hx1imsdve/image/upload/v1487849906/un7xumaluiktopvkcnlk.jpg",
+      description: "This is our new poster!",
+      id_user: "3"
+    },
+    {
+      id: "1",
+      picture: "http://res.cloudinary.com/hx1imsdve/image/upload/v1487850404/t0ir65t65amlz8tlqm17.jpg",
+      description: "My new car!",
+      id_user: "4"
+    }]
 
 
 app.get('/', function (req,res){
@@ -63,7 +92,8 @@ app.post('/register', function(req, res){
     id: users.length,
     username: req.body.username,
     password: req.body.password,
-    email: req.body.email
+    email: req.body.email,
+    imageProfile: 'http://res.cloudinary.com/hx1imsdve/image/upload/v1487857939/glwd9nx9rljwdiaf1vyd.png'
   });
   console.log(users);
 
@@ -91,9 +121,32 @@ app.get('/users/:id', function(req, res){
   res.json(user);
 });
 
+app.get('/posts', function(req, res){
+  return res.json(posts);
+});
+
 app.post('/upload', parser.single('image'), function (req, res) {
     console.log(req.file);
     res.sendStatus(201);
+});
+
+app.get("/postUser/:id", function(req, res){
+  console.log('test pass here');
+  console.log(req.params.id);
+  var userpost = users.find(function(element){
+    if (element.id == req.params.id) {
+      return (element.username) && (element.imageProfile);
+    }
+  });
+
+  if(userpost !== undefined)
+    {
+        return res.json({imgProfile: userpost.imageProfile, username: userpost.username});
+    }
+    else
+    {
+        return res.sendStatus(401);
+    }
 });
 
 app.listen(app.get('port'), function(){
