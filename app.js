@@ -3,6 +3,7 @@ var app = express();
 var cloudinary = require('cloudinary');
 var cloudinaryStorage = require('multer-storage-cloudinary');
 var bodyParser = require('body-parser');
+var multer = require('multer');
 var cors = require('cors');
 
 app.use(cors());
