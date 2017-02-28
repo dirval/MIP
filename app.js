@@ -133,7 +133,7 @@ app.post('/upload', parser.single('image'), function (req, res) {
           description: req.body.description,
           id_user: req.body.id_user
         });
-        return posts;
+        return res.json(posts);
     // if (req.body !== 0) {
     //   console.log(req.body);
     //   console.log(req.body.id_user);
