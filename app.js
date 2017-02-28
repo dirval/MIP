@@ -127,9 +127,14 @@ app.get('/posts', function(req, res){
 
 app.post('/upload', parser.single('image'), function (req, res) {
       console.log(req);
-      url_image = req.file.url;
       console.log(url_image);
-
+      posts.push({
+          id: posts.length,
+          picture: req.file.url,
+          description: req.body.description,
+          id_user: req.body.id_user
+        });
+        return posts;
     // if (req.body !== 0) {
     //   console.log(req.body);
     //   console.log(req.body.id_user);
