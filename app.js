@@ -79,7 +79,6 @@ app.post('/myPost/:id', function(req, res){
     images_url[i]= images[i].picture;
   }
   return res.json(images_url);
-
 });
 
 app.post('/login', function(req, res){
