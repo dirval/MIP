@@ -126,7 +126,7 @@ app.get('/posts', function(req, res){
 });
 
 app.post('/upload', parser.single('image'), function (req, res) {
-      console.log(req.file);
+      console.log(req);
       url_image = req.file.url;
       console.log(url_image);
 
