@@ -132,6 +132,7 @@ app.post('/upload', parser.single('image'), function (req, res) {
       url_image = req.file.url;
       console.log(url_image);
     }
+    console.log(req.body);
     if (req.body.description != null) {
       console.log(req.body.id_user);
       console.log(req.body.description);
@@ -141,7 +142,7 @@ app.post('/upload', parser.single('image'), function (req, res) {
         description: req.body.description,
         id_user: req.body.id_user
       });
-      return res.json(posts);
+      console.log(posts);
     }
 });
 
