@@ -127,6 +127,17 @@ app.get('/posts', function(req, res){
 
 app.post('/upload', parser.single('image'), function (req, res) {
     console.log(req.file.url);
+    var url_image = req.file.url;
+    console.log(req.body.id_user);
+    console.log(req.body.description);
+    if (isset(req.body.description)) {
+      post.push({
+        id: posts.length,
+        picture: url_image,
+        description: req.body.description,
+        id_user: req.body.id_user
+      });
+    }
     res.json(req.file.url);
 });
 
