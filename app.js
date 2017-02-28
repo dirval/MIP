@@ -132,7 +132,7 @@ app.post('/upload', parser.single('image'), function (req, res) {
       url_image = req.file.url;
       console.log(url_image);
     }
-    if (req.body != "") {
+    if (req.body !== 0) {
       console.log(req.body);
       console.log(req.body.id_user);
       console.log(req.body.description);
