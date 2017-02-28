@@ -126,19 +126,23 @@ app.get('/posts', function(req, res){
 });
 
 app.post('/upload', parser.single('image'), function (req, res) {
-    console.log(req.file.url);
-    var url_image = req.file.url;
-    console.log(req.body.id_user);
-    console.log(req.body.description);
+
+    if (req.file != null) {
+      console.log(req.file.url);
+      url_image = req.file.url;
+      console.log(url_image);
+    }
     if (req.body.description != null) {
+      console.log(req.body.id_user);
+      console.log(req.body.description);
       post.push({
         id: posts.length,
         picture: url_image,
         description: req.body.description,
         id_user: req.body.id_user
       });
+      return res.json(posts);
     }
-    res.json(posts);
 });
 
 app.get("/postUser/:id", function(req, res){
