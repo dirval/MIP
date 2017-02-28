@@ -69,6 +69,19 @@ app.get('/', function (req,res){
   res.send('Hello world!');
 })
 
+app.post('/myPost/:id', function(req, res){
+  var images = posts.filter(function(element){
+    return (element.id_user === req.params.id);
+  });
+  var images_url = [];
+
+  for (var i = 0; i < images.length; i++) {
+    images_url[i]= images[i].picture;
+  }
+  return res.json(images_url);
+
+});
+
 app.post('/login', function(req, res){
   //console.log("test");
   console.log(req.body);
@@ -134,24 +147,9 @@ app.post('/upload', parser.single('image'), function (req, res) {
           id_user: req.body.id_user
         });
         return res.json(posts);
-    // if (req.body !== 0) {
-    //   console.log(req.body);
-    //   console.log(req.body.id_user);
-    //   console.log(req.body.description);
-    //   posts.push({
-    //     id: posts.length,
-    //     picture: url_image,
-    //     description: req.body.description,
-    //     id_user: req.body.id_user
-    //   });
-    //   console.log(posts);
-    //   return posts;
-    // }
 });
 
 app.get("/postUser/:id", function(req, res){
-  console.log('test pass here');
-  console.log(req.params.id);
   var userpost = users.find(function(element){
     if (element.id == req.params.id) {
       return (element.username) && (element.imageProfile);
