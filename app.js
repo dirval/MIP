@@ -55,13 +55,13 @@ var posts = [{
       id: "0",
       picture: "http://res.cloudinary.com/hx1imsdve/image/upload/v1487849906/un7xumaluiktopvkcnlk.jpg",
       description: "This is our new poster!",
-      id_user: "3"
+      id_user: "2"
     },
     {
       id: "1",
       picture: "http://res.cloudinary.com/hx1imsdve/image/upload/v1487850404/t0ir65t65amlz8tlqm17.jpg",
       description: "My new car!",
-      id_user: "4"
+      id_user: "3"
     }]
 
 
