@@ -69,7 +69,7 @@ app.get('/', function (req,res){
   res.send('Hello world!');
 })
 
-app.post('/myPost/:id', function(req, res){
+app.post('/mypost/:id', function(req, res){
   var images = posts.filter(function(element){
     return (element.id_user === req.params.id);
   });
